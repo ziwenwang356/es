@@ -52,6 +52,21 @@ SearchResponse searchResponse = client.search(searchRequest);
 
 四，踩过的坑
 
+参考 es.md文件
+
+
+
+五,参考文档
+
+
+文档:https://www.elastic.co/guide/index.html 
+
+官方demo:https://github.com/spring-projects/spring-data-elasticsearch 
+
+链接:https://blog.csdn.net/huangshulang1234/article/details/78986033https://blog.csdn.net/zhaoyahui_666/article/details/78688688 
+
+
+
 
 
 
