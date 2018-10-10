@@ -1,0 +1,54 @@
+
+一,ES 概况：
+
+我个人对其理解：  第一，可以把其看成一个数据库；
+				第二，他会对所有的字段进行构建索引；
+				第三，他支持丰富的操作，比如查找，过滤，删除，插入，修改等；
+				第四，他本质是对luncen的高层的封装；
+
+
+
+
+二,操作ES的方式比较多，常用的可能是如下的三种方式：
+
+1，Repositories；
+
+2，ElasticsearchTemplate；
+
+3，@Query 语句；
+
+
+三,客户端处理
+
+以java举例
+
+
+
+方法一:
+
+1,在application-test.properties中配置如下的信息
+
+spring.data.elasticsearch.cluster-nodes=10.19.126.209:9300
+
+2,然后在实现类中加上如下的注解就可以调用其中的方法了
+
+    @Autowired
+    private CreativeIndexTotalRepository creativeIndexTotalRepository;
+
+方二:
+
+或者使用如下的方法：
+
+RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("localhost", 9200, "http")));
+SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+searchSourceBuilder.query(QueryBuilders.matchAllQuery());            
+searchSourceBuilder.aggregation(AggregationBuilders.terms("top_10_states").field("state").size(10));
+SearchRequest searchRequest = new SearchRequest();
+searchRequest.indices("social-*");
+searchRequest.source(searchSourceBuilder);
+SearchResponse searchResponse = client.search(searchRequest);
+
+
+
+
+
